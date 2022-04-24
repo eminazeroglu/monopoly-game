@@ -1,4 +1,3 @@
-import Swal from "sweetalert2";
 import {createContext, useContext, useState} from "react";
 import {dialog} from "../utils/helpers";
 
@@ -7,11 +6,23 @@ const AppContext = createContext();
 export const AppContextProvider = ({children}) => {
 
     const [value, setValue] = useState({
-        users: []
+        users: localStorage.getItem('users') ? JSON.parse(localStorage.getItem('users')) : [
+            {
+                id: 10,
+                name: 'Bank'
+            },
+        ]
     });
 
-    const setUsers = (newUser) => {
-        handleSetValue('users', [...value.users, {...newUser, id: Math.random()}])
+    const addUsers = (newUser) => {
+        const users = [...value.users, {...newUser, id: Math.random()}];
+        handleSetValue('users', users)
+        localStorage.setItem('users', JSON.stringify(users))
+    }
+
+    const setUsers = (users) => {
+        handleSetValue('users', users)
+        localStorage.setItem('users', JSON.stringify(users))
     }
 
     const handleSetValue = (key, newValue) => {
@@ -28,6 +39,7 @@ export const AppContextProvider = ({children}) => {
         .then(r => {
             if (r === 'yes') {
                 handleSetValue('users', [])
+                localStorage.removeItem('users');
             }
         })
     }
@@ -35,6 +47,7 @@ export const AppContextProvider = ({children}) => {
     const values = {
         ...value,
         handleSetValue,
+        addUsers,
         setUsers,
         resetGame
     }

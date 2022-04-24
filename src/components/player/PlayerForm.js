@@ -1,40 +1,39 @@
 import React, {useEffect, useState} from 'react';
 import {useAppContext} from "../../contexts/AppContext";
-import {Col, Modal, Row} from "antd";
+import {Col, Input, InputNumber, Modal, Row} from "antd";
+import {useFormik} from "formik";
+import * as Yup from 'yup';
+import FormGroup from "../common/FormGroup";
+
+const validationSchema = Yup.object().shape({
+    name: Yup.string().required('Zəhmət olmasa boş buraxmayın.'),
+    balance: Yup.number().required('Zəhmət olmasa boş buraxmayın.'),
+})
 
 function PlayerForm({visible, onClose}) {
 
     const [isModalVisible, setIsModalVisible] = useState(false);
-    const {setUsers} = useAppContext();
-    const [error, setError] = useState({});
-    const initialForm = {
-        name: '',
-        balance: 15000
-    };
-    const [form, setForm] = useState(initialForm);
+    const {addUsers} = useAppContext();
+    const {values, handleSubmit, resetForm, setFieldValue, errors, touched} = useFormik({
+        initialValues: {
+            name: '',
+            balance: 15000
+        },
+        validationSchema,
+        onSubmit: values => {
+            addUsers(values);
+            resetForm();
+        }
+    })
 
     const handleCancel = () => {
         setIsModalVisible(false);
         onClose(false);
     }
 
-    const userSubmit = (e) => {
-        e.preventDefault();
-        if (form.name && form.balance) {
-            setError([]);
-            setUsers(form);
-            setForm(initialForm)
-        }
-        else {
-            if (!form.name && !error['name']) setError({...error, name: true});
-            if (!form.balance && !error['balance']) setError({...error, balance: true});
-        }
-    }
-
     useEffect(() => {
         setIsModalVisible(visible);
     }, [visible])
-
 
     return (
         <Modal
@@ -43,31 +42,42 @@ function PlayerForm({visible, onClose}) {
             title="Oyuncu elave etmək formu"
             onCancel={handleCancel}
         >
-            <form onSubmit={userSubmit}>
+            <form onSubmit={handleSubmit}>
                 <Row gutter={[16, 16]}>
                     <Col span={24}>
-                        <div className="form-group">
-                            <label>Oyuncu adı</label>
-                            <input type="text" value={form.name} onChange={e => setForm({
-                                ...form,
-                                name: e.target.value
-                            })}/>
-                            {error.name && (<p className="text-red-500">Zəhmət olmasa boş buraxmayın</p>)}
-                        </div>
+                        <FormGroup
+                            label="Oyuncu adı"
+                            error={errors.name && touched.name}
+                            errorMessage={errors.name}
+                        >
+                            <Input
+                                name="name"
+                                value={values.name}
+                                onChange={e => setFieldValue('name', e.target.value)}
+                            />
+                        </FormGroup>
                     </Col>
                     <Col span={24}>
-                        <div className="form-group">
-                            <label>Balans</label>
-                            <input type="number" value={form.balance} onChange={e => setForm({
-                                ...form,
-                                balance: e.target.value
-                            })}/>
-                            {error.balance && (<p className="text-red-500">Zəhmət olmasa boş buraxmayın</p>)}
-                        </div>
+                        <FormGroup
+                            label="Balans"
+                            error={errors.balance && touched.balance}
+                            errorMessage={errors.balance}
+                        >
+                            <InputNumber
+                                name="balance"
+                                value={values.balance}
+                                onChange={e => setFieldValue('balance', e)}
+                            />
+                        </FormGroup>
                     </Col>
                     <Col span={24}>
                         <div>
-                            <button type="submit" className="btn btn-green w-full">Yadda saxla</button>
+                            <button
+                                type="submit"
+                                className="btn btn-green w-full"
+                            >
+                                Yadda saxla
+                            </button>
                         </div>
                     </Col>
                 </Row>

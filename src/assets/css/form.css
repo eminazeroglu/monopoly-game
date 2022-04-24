@@ -2,6 +2,10 @@
     @apply outline-none
 }
 
+.form-error {
+    @apply text-red-500 text-xs font-medium
+}
+
 .form-group {
     @apply flex flex-col space-y-1
 }
@@ -9,6 +13,11 @@
     @apply font-medium
 }
 
-.form-group input {
-    @apply border border-gray-200 bg-white h-8 px-3 rounded
+.form-group--error .ant-input,
+.form-group--error .ant-input-number-input {
+    @apply border-red-500
+}
+
+.ant-input-number {
+    @apply w-full
 }
