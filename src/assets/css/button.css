@@ -1,0 +1,15 @@
+.btn {
+    @apply px-3 h-8 flex items-center justify-center rounded
+}
+
+.btn.btn-green {
+    @apply bg-green-500 text-white
+}
+
+.btn.btn-red {
+    @apply bg-red-500 text-white
+}
+
+.btn.btn-orange {
+    @apply bg-orange-500 text-white
+}

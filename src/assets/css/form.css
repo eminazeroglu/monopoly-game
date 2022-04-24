@@ -1,0 +1,14 @@
+*:focus, *:active {
+    @apply outline-none
+}
+
+.form-group {
+    @apply flex flex-col space-y-1
+}
+.form-group label {
+    @apply font-medium
+}
+
+.form-group input {
+    @apply border border-gray-200 bg-white h-8 px-3 rounded
+}
