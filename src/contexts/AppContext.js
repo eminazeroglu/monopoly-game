@@ -1,4 +1,6 @@
+import Swal from "sweetalert2";
 import {createContext, useContext, useState} from "react";
+import {dialog} from "../utils/helpers";
 
 const AppContext = createContext();
 
@@ -19,10 +21,22 @@ export const AppContextProvider = ({children}) => {
         }))
     }
 
+    const resetGame = () => {
+        dialog({
+            message: 'Oyunu sonlandırmaq istədiyinizə əminsiz? Oyun sonladıqda bütün oyuncular silinəcək'
+        })
+        .then(r => {
+            if (r === 'yes') {
+                handleSetValue('users', [])
+            }
+        })
+    }
+
     const values = {
         ...value,
         handleSetValue,
-        setUsers
+        setUsers,
+        resetGame
     }
     return <AppContext.Provider value={values}>{children}</AppContext.Provider>
 }
