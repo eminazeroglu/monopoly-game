@@ -8,6 +8,10 @@ export const AppContextProvider = ({children}) => {
         users: []
     });
 
+    const setUsers = (newUser) => {
+        handleSetValue('users', [...value.users, {...newUser, id: Math.random()}])
+    }
+
     const handleSetValue = (key, newValue) => {
         setValue(prevState => ({
             ...prevState,
@@ -18,6 +22,7 @@ export const AppContextProvider = ({children}) => {
     const values = {
         ...value,
         handleSetValue,
+        setUsers
     }
     return <AppContext.Provider value={values}>{children}</AppContext.Provider>
 }

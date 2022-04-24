@@ -1,5 +1,8 @@
+@import "~antd/dist/antd.css";
+@import "~sweetalert2/dist/sweetalert2.min.css";
 @import "./tailwind.css";
 @import "./button.css";
+@import "./sweetalert.css";
 @import "./form.css";
 
 html, body, #root {
