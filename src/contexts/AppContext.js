@@ -1,5 +1,7 @@
 import {createContext, useContext, useState} from "react";
 import {dialog} from "../utils/helpers";
+import { v4 as uuidv4 } from 'uuid';
+import {areas} from "../data";
 
 const AppContext = createContext();
 
@@ -11,11 +13,14 @@ export const AppContextProvider = ({children}) => {
                 id: 10,
                 name: 'Bank'
             },
-        ]
+        ],
+        areas
     });
 
+    console.log(areas);
+
     const addUsers = (newUser) => {
-        const users = [...value.users, {...newUser, id: Math.random()}];
+        const users = [...value.users, {...newUser, id: uuidv4()}];
         handleSetValue('users', users)
         localStorage.setItem('users', JSON.stringify(users))
     }

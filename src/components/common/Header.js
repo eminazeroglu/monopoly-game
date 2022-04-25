@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import PlayerForm from "../player/PlayerForm";
 import {useAppContext} from "../../contexts/AppContext";
 import PlayerPayment from "../player/PlayerPayment";
+import PlayerSale from "../player/PlayerSale";
 
 function Header() {
     const monopolyImage = require('../../assets/img/monopoly.png');
@@ -9,6 +10,7 @@ function Header() {
     const {resetGame, users} = useAppContext();
     const [playerFormModal, setPlayerFormModal] = useState(false);
     const [playerPaymentModal, setPlayerPaymentModal] = useState(false);
+    const [playerSaleModal, setPlayerSaleModal] = useState(false);
 
     return (
         <>
@@ -44,19 +46,21 @@ function Header() {
                 <div className="order-3 flex w-full justify-end space-x-2 lg:pt-0 lg:h-full">
                     <button
                         className="btn btn-orange flex-1 lg:flex-initial"
+                        onClick={() => setPlayerSaleModal(true)}
                     >
                         Ərazi sat
                     </button>
                     <button
                         className="btn btn-green flex-1 lg:flex-initial"
                     >
-                        Başlanğıçı keçdi
+                        İpoteka et
                     </button>
                 </div>
             </div>
 
             <PlayerForm visible={playerFormModal} onClose={() => setPlayerFormModal(false)}/>
             <PlayerPayment visible={playerPaymentModal} onClose={() => setPlayerPaymentModal(false)}/>
+            <PlayerSale visible={playerSaleModal} onClose={() => setPlayerSaleModal(false)}/>
         </>
     );
 }

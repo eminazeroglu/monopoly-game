@@ -7,8 +7,8 @@ import * as Yup from "yup";
 import {dialog} from "../../utils/helpers";
 
 const validationSchema = Yup.object().shape({
-    who_id: Yup.number().required('Zəhmət olmasa kimin ödəyəçəyini seçin'),
-    whom_id: Yup.number().required('Zəhmət olmasa kimə ödəniş olunaçaq onu seçin'),
+    who_id: Yup.string().required('Zəhmət olmasa kimin ödəyəçəyini seçin'),
+    whom_id: Yup.string().required('Zəhmət olmasa kimə ödəniş olunaçaq onu seçin'),
     price: Yup.number().required('Zəhmət olmasa məbləği seçin'),
 })
 
