@@ -1,5 +1,5 @@
-import React, {useCallback, useEffect, useState} from 'react';
-import {Col, InputNumber, Modal, Row, Select} from "antd";
+import React, {useEffect, useState} from 'react';
+import {Col, Modal, Row, Select} from "antd";
 import {useAppContext} from "contexts/AppContext";
 import {useFormik} from "formik";
 import FormGroup from "../common/FormGroup";

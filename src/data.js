@@ -1,4 +1,3 @@
-import { v4 as uuidv4 } from 'uuid';
 const metro = require('assets/img/metro.png')
 const avtovagzal = require('assets/img/avtovagzal.png')
 const baktelekom = require('assets/img/baktelekom.png')
