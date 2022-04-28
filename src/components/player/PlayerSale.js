@@ -6,6 +6,8 @@ import FormGroup from "../common/FormGroup";
 import * as Yup from "yup";
 import {dialog} from "../../utils/helpers";
 
+const {Option} = Select;
+
 const validationSchema = Yup.object().shape({
     player_id: Yup.string().required('Zəhmət olmasa kimin ödəyəçəyini seçin'),
     area_id: Yup.string().required('Zəhmət olmasa kimə ödəniş olunaçaq onu seçin')
@@ -13,9 +15,11 @@ const validationSchema = Yup.object().shape({
 
 function PlayerSale({visible, onClose}) {
     const [isModalVisible, setIsModalVisible] = useState(false);
-    const {setUsers, users, areas} = useAppContext();
+    const {addUserArea, users, areas, user_areas} = useAppContext();
     const items = users.filter(i => i.id !== 10);
-    const customAreas = areas.filter(a => users.filter(u => u?.areas?.find(ua => ua.id !== a.id)))
+
+    const customAreas = user_areas.length > 0 ? areas.filter(a => !user_areas.find(ua => ua.area_id === a.id)) : areas;
+
     const {values, handleSubmit, resetForm, setFieldValue, errors, touched} = useFormik({
         initialValues: {
             player_id: '',
@@ -35,14 +39,20 @@ function PlayerSale({visible, onClose}) {
                         })
                         return false;
                     }
-                    if (!users[index]?.areas?.find(a => a.id === area.id)) {
-                        users[index].areas = [...(users[index]?.areas?.length ? users[index]?.areas : []), area];
-                        users[index].balance -= parseFloat(area.document_price);
-                        console.log(users);
-                        setUsers(users);
+                    const check = user_areas.find(i => i.player_id === values.player_id && i.id === area.id);
+                    if (!check) {
+                        addUserArea(values);
                         resetForm();
                         setIsModalVisible(false)
                         onClose(false);
+                    }
+                    else {
+                        const user = items.find(i => i.id === check.player_id)
+                        dialog({
+                            message: `Bu ərazi artıq <b>${user.name}</b> tərəfindən alınıb.`,
+                            buttonYes: false,
+                            buttonNo: false,
+                        })
                     }
                 }
             }
@@ -89,12 +99,14 @@ function PlayerSale({visible, onClose}) {
                             errorMessage={errors.area_id}
                         >
                             <Select
-                                options={customAreas}
-                                fieldNames={{label: 'name', value: 'id'}}
                                 name="area_id"
                                 value={values.area_id}
                                 onChange={e => setFieldValue('area_id', e)}
-                            />
+                            >
+                                {customAreas.length > 0 && customAreas.map((i, index) => (
+                                    <Option key={index} value={i.id}>{i.name} - {i.document_price} AZN</Option>
+                                ))}
+                            </Select>
                         </FormGroup>
                     </Col>
                     <Col span={24}>

@@ -52,7 +52,7 @@ export const areas = [
         "name": "İcra hakimiyyəti",
         "document_price": "5000",
         "color": "#fff",
-        "bg_color": "#490000",
+        "bg_color": "#9f2c2c",
         "image": "",
         "empty_area": "40",
         "price": {
@@ -70,7 +70,8 @@ export const areas = [
         "type": "transport",
         "name": "Metro",
         "document_price": "2000",
-        "color": "#000",
+        "color": "#fff",
+        "bg_color": "blue",
         "image": metro,
         "empty_area": "250",
         "price": {
@@ -84,7 +85,8 @@ export const areas = [
         "type": "transport",
         "name": "Hava limanı",
         "document_price": "2000",
-        "color": "#000",
+        "color": "#fff",
+        "bg_color": "blue",
         "image": havaLimani,
         "empty_area": "250",
         "price": {
@@ -98,7 +100,8 @@ export const areas = [
         "type": "transport",
         "name": "Avtovağzal",
         "document_price": "2000",
-        "color": "#000",
+        "color": "#fff",
+        "bg_color": "blue",
         "image": avtovagzal,
         "empty_area": "250",
         "price": {
@@ -112,8 +115,11 @@ export const areas = [
         "type": "company",
         "name": "Baktelekom",
         "document_price": "2000",
-        "color": "#000",
+        "color": "#fff",
+        "bg_color": "yellow",
         "image": baktelekom,
+        "one_price": "40",
+        "two_price": "100",
         "mortgage": "750"
     },
     {
@@ -121,8 +127,11 @@ export const areas = [
         "type": "company",
         "name": "SOCAR",
         "document_price": "2000",
-        "color": "#000",
+        "color": "#fff",
+        "bg_color": "yellow",
         "image": soccar,
+        "one_price": "40",
+        "two_price": "100",
         "mortgage": "750"
     },
     {
@@ -130,8 +139,8 @@ export const areas = [
         "type": "area",
         "name": "Həzi Aslanov",
         "document_price": "1000",
-        "color": "#000",
-        "bg_color": "#aabfe1",
+        "color": "#fff",
+        "bg_color": "#7489a7",
         "empty_area": "60",
         "price": {
             "one": "300",
@@ -149,8 +158,8 @@ export const areas = [
         "type": "area",
         "name": "Koroğlu",
         "document_price": "1200",
-        "color": "#000",
-        "bg_color": "#aabfe1",
+        "color": "#fff",
+        "bg_color": "#7489a7",
         "empty_area": "60",
         "price": {
             "one": "400",
@@ -168,8 +177,8 @@ export const areas = [
         "type": "area",
         "name": "Ulduz",
         "document_price": "1000",
-        "color": "#000",
-        "bg_color": "#aabfe1",
+        "color": "#fff",
+        "bg_color": "#7489a7",
         "empty_area": "60",
         "price": {
             "one": "300",
@@ -187,7 +196,7 @@ export const areas = [
         "type": "area",
         "name": "Biləcəri",
         "document_price": "1400",
-        "color": "#000",
+        "color": "#fff",
         "bg_color": "#bd4949",
         "empty_area": "100",
         "price": {
@@ -206,7 +215,7 @@ export const areas = [
         "type": "area",
         "name": "20 yanvar",
         "document_price": "1400",
-        "color": "#000",
+        "color": "#fff",
         "bg_color": "#bd4949",
         "empty_area": "100",
         "price": {
@@ -225,7 +234,7 @@ export const areas = [
         "type": "area",
         "name": "İnşaatçılar",
         "document_price": "1600",
-        "color": "#000",
+        "color": "#fff",
         "bg_color": "#bd4949",
         "empty_area": "120",
         "price": {
@@ -244,7 +253,7 @@ export const areas = [
         "type": "area",
         "name": "Elimlər A.",
         "document_price": "1800",
-        "color": "#000",
+        "color": "#fff",
         "bg_color": "#ff914d",
         "empty_area": "140",
         "price": {
@@ -263,7 +272,7 @@ export const areas = [
         "type": "area",
         "name": "Nizami",
         "document_price": "1800",
-        "color": "#000",
+        "color": "#fff",
         "bg_color": "#ff914d",
         "empty_area": "140",
         "price": {
@@ -282,7 +291,7 @@ export const areas = [
         "type": "area",
         "name": "28 may",
         "document_price": "2000",
-        "color": "#000",
+        "color": "#fff",
         "bg_color": "#ff914d",
         "empty_area": "160",
         "price": {
@@ -358,7 +367,7 @@ export const areas = [
         "type": "area",
         "name": "Xalqlar D.",
         "document_price": "2600",
-        "color": "#000",
+        "color": "#fff",
         "bg_color": "#ffe168",
         "empty_area": "220",
         "price": {
@@ -377,7 +386,7 @@ export const areas = [
         "type": "area",
         "name": "Q. Qarayev",
         "document_price": "2600",
-        "color": "#000",
+        "color": "#fff",
         "bg_color": "#ffe168",
         "empty_area": "220",
         "price": {
@@ -396,7 +405,7 @@ export const areas = [
         "type": "area",
         "name": "Neftçilər",
         "document_price": "2800",
-        "color": "#000",
+        "color": "#fff",
         "bg_color": "#ffe168",
         "empty_area": "240",
         "price": {

@@ -8,6 +8,7 @@ function Header() {
     const monopolyImage = require('../../assets/img/monopoly.png');
 
     const {resetGame, users} = useAppContext();
+    const customUsers = users.filter(i => i.id !== 10);
     const [playerFormModal, setPlayerFormModal] = useState(false);
     const [playerPaymentModal, setPlayerPaymentModal] = useState(false);
     const [playerSaleModal, setPlayerSaleModal] = useState(false);
@@ -34,7 +35,7 @@ function Header() {
                         <img src={monopolyImage} alt="Monopoly Bank"/>
                     </figure>
                     <p className="text-lg font-medium">Monopoly Banking</p>
-                    {users.length > 0 && (
+                    {customUsers.length > 0 && (
                         <button
                             onClick={resetGame}
                             className="btn btn-red lg:flex-initial"
@@ -44,12 +45,14 @@ function Header() {
                     )}
                 </div>
                 <div className="order-3 flex w-full justify-end space-x-2 lg:pt-0 lg:h-full">
-                    <button
-                        className="btn btn-orange flex-1 lg:flex-initial"
-                        onClick={() => setPlayerSaleModal(true)}
-                    >
-                        Ərazi sat
-                    </button>
+                    {customUsers.length > 0 && (
+                        <button
+                            className="btn btn-orange flex-1 lg:flex-initial"
+                            onClick={() => setPlayerSaleModal(true)}
+                        >
+                            Ərazi sat
+                        </button>
+                    )}
                     <button
                         className="btn btn-green flex-1 lg:flex-initial"
                     >
@@ -58,9 +61,15 @@ function Header() {
                 </div>
             </div>
 
-            <PlayerForm visible={playerFormModal} onClose={() => setPlayerFormModal(false)}/>
-            <PlayerPayment visible={playerPaymentModal} onClose={() => setPlayerPaymentModal(false)}/>
-            <PlayerSale visible={playerSaleModal} onClose={() => setPlayerSaleModal(false)}/>
+            {playerFormModal && (
+                <PlayerForm visible={playerFormModal} onClose={() => setPlayerFormModal(false)}/>
+            )}
+            {playerPaymentModal && (
+                <PlayerPayment visible={playerPaymentModal} onClose={() => setPlayerPaymentModal(false)}/>
+            )}
+            {playerSaleModal && (
+                <PlayerSale visible={playerSaleModal} onClose={() => setPlayerSaleModal(false)}/>
+            )}
         </>
     );
 }

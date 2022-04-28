@@ -14,15 +14,20 @@ export const AppContextProvider = ({children}) => {
                 name: 'Bank'
             },
         ],
+        user_areas: localStorage.getItem('user_areas') ? JSON.parse(localStorage.getItem('user_areas')) : [],
         areas
     });
 
-    console.log(areas);
-
     const addUsers = (newUser) => {
-        const users = [...value.users, {...newUser, id: uuidv4()}];
+        const users = [...value.users, {...newUser, id: uuidv4(), areas: []}];
         handleSetValue('users', users)
         localStorage.setItem('users', JSON.stringify(users))
+    }
+
+    const addUserArea = (newUser) => {
+        const users = [...value.user_areas, newUser];
+        handleSetValue('user_areas', users)
+        localStorage.setItem('user_areas', JSON.stringify(users))
     }
 
     const setUsers = (users) => {
@@ -44,7 +49,7 @@ export const AppContextProvider = ({children}) => {
         .then(r => {
             if (r === 'yes') {
                 handleSetValue('users', [])
-                localStorage.removeItem('users');
+                localStorage.clear();
             }
         })
     }
@@ -54,7 +59,8 @@ export const AppContextProvider = ({children}) => {
         handleSetValue,
         addUsers,
         setUsers,
-        resetGame
+        resetGame,
+        addUserArea
     }
     return <AppContext.Provider value={values}>{children}</AppContext.Provider>
 }
