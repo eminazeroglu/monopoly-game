@@ -46,26 +46,30 @@ function Header() {
                         </button>
                     )}
                 </div>
-                <div className="order-3 flex w-full justify-end space-x-2 lg:pt-0 lg:h-full">
-                    {customUsers.length > 0 && (
+                <div className="order-3 flex flex-col w-full items-end space-y-2 lg:pt-0 lg:h-full">
+                    <div className="flex items-center space-x-2 justify-between lg:pt-0 lg:h-full">
+                        {customUsers.length > 0 && (
+                            <button
+                                className="btn btn-orange flex-1 lg:flex-initial whitespace-nowrap"
+                                onClick={() => setPlayerSaleModal(true)}
+                            >
+                                Bankdan ərazi satışı
+                            </button>
+                        )}
                         <button
-                            className="btn btn-orange flex-1 lg:flex-initial"
-                            onClick={() => setPlayerSaleModal(true)}
+                            className="btn btn-pink flex-1 lg:flex-initial whitespace-nowrap"
+                            onClick={() => setPlayerTransferAreaModal(true)}
                         >
-                            Bankdan ərazi satışı
+                            Oyunçudan ərazi satışı
                         </button>
-                    )}
-                    <button
-                        className="btn btn-pink flex-1 lg:flex-initial"
-                        onClick={() => setPlayerTransferAreaModal(true)}
-                    >
-                        Oyunçudan ərazi satışı
-                    </button>
-                    <button
-                        className="btn btn-green flex-1 lg:flex-initial"
-                    >
-                        İpoteka et
-                    </button>
+                    </div>
+                    <div className="flex items-center justify-between space-x-2">
+                        <button
+                            className="btn btn-green flex-1 lg:flex-initial"
+                        >
+                            İpoteka et
+                        </button>
+                    </div>
                 </div>
             </div>
 
