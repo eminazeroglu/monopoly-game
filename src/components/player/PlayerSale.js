@@ -15,7 +15,7 @@ const validationSchema = Yup.object().shape({
 
 function PlayerSale({visible, onClose}) {
     const [isModalVisible, setIsModalVisible] = useState(false);
-    const {addUserArea, users, areas, user_areas} = useAppContext();
+    const {addUserArea, setUsers, users, areas, user_areas} = useAppContext();
     const items = users.filter(i => i.id !== 10);
 
     const customAreas = user_areas.length > 0 ? areas.filter(a => !user_areas.find(ua => ua.area_id === a.id)) : areas;
@@ -33,7 +33,7 @@ function PlayerSale({visible, onClose}) {
                 if (area) {
                     if (parseFloat(users[index].balance) < parseFloat(area.document_price)) {
                         dialog({
-                            message: `${users[index].name} adlı oyuncunun hesabında kifayyət qədər vəsait yoxdur.`,
+                            message: `<b>${users[index].name}</b> adlı oyuncunun hesabında kifayyət qədər vəsait yoxdur.`,
                             buttonNo: false,
                             buttonYes: false,
                         })
@@ -41,6 +41,8 @@ function PlayerSale({visible, onClose}) {
                     }
                     const check = user_areas.find(i => i.player_id === values.player_id && i.id === area.id);
                     if (!check) {
+                        users[index].balance -= area.document_price;
+                        setUsers(users);
                         addUserArea(values);
                         resetForm();
                         setIsModalVisible(false)

@@ -47,7 +47,7 @@ export const areas = [
     },
     {
         "id": "58065388-64a0-4f0f-803d-d42ccf5e27d8",
-        "type": "area",
+        "type": "executive",
         "name": "İcra hakimiyyəti",
         "document_price": "5000",
         "color": "#fff",
@@ -61,8 +61,8 @@ export const areas = [
             "four": "400",
             "hotel": "1000"
         },
-        "mortgage": "100",
-        "building_home": "500"
+        "building_home": "100",
+        "building_hotel": "500"
     },
     {
         "id": "9c37874a-4bf4-4afa-b152-b40284740384",

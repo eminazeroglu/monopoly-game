@@ -3,6 +3,7 @@ import PlayerForm from "../player/PlayerForm";
 import {useAppContext} from "../../contexts/AppContext";
 import PlayerPayment from "../player/PlayerPayment";
 import PlayerSale from "../player/PlayerSale";
+import PlayerTransferArea from "../player/PlayerTransferArea";
 
 function Header() {
     const monopolyImage = require('../../assets/img/monopoly.png');
@@ -12,6 +13,7 @@ function Header() {
     const [playerFormModal, setPlayerFormModal] = useState(false);
     const [playerPaymentModal, setPlayerPaymentModal] = useState(false);
     const [playerSaleModal, setPlayerSaleModal] = useState(false);
+    const [playerTransferAreaModal, setPlayerTransferAreaModal] = useState(false);
 
     return (
         <>
@@ -50,9 +52,15 @@ function Header() {
                             className="btn btn-orange flex-1 lg:flex-initial"
                             onClick={() => setPlayerSaleModal(true)}
                         >
-                            Ərazi sat
+                            Bankdan ərazi satışı
                         </button>
                     )}
+                    <button
+                        className="btn btn-pink flex-1 lg:flex-initial"
+                        onClick={() => setPlayerTransferAreaModal(true)}
+                    >
+                        Oyunçudan ərazi satışı
+                    </button>
                     <button
                         className="btn btn-green flex-1 lg:flex-initial"
                     >
@@ -69,6 +77,9 @@ function Header() {
             )}
             {playerSaleModal && (
                 <PlayerSale visible={playerSaleModal} onClose={() => setPlayerSaleModal(false)}/>
+            )}
+            {playerTransferAreaModal && (
+                <PlayerTransferArea visible={playerTransferAreaModal} onClose={() => setPlayerTransferAreaModal(false)}/>
             )}
         </>
     );

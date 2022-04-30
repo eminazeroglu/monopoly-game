@@ -30,7 +30,7 @@ function PlayerPayment({visible, onClose}) {
             if (whoIndex >= 0 && whomIndex >= 0) {
                 if (users[whoIndex].balance < values.price) {
                     dialog({
-                        message: `${users[whoIndex].name} adlı oyuncunun hesabında kifayyət qədər vəsait yoxdur.`,
+                        message: `<b>${users[whoIndex].name}</b> adlı oyuncunun hesabında kifayyət qədər vəsait yoxdur.`,
                         buttonNo: false,
                         buttonYes: false,
                     })

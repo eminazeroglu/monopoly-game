@@ -3,7 +3,7 @@ import React from 'react';
 function AreaTitleDeed({item}) {
     return (
         <div className="bg-white border border-gray-200">
-            {item.type === 'area' && (
+            {(item.type === 'area' || item.type === 'executive') && (
                 <div className="border-2 border-black">
                     <div className="flex flex-col text-center border-b-2 border-black" style={{backgroundColor: item.bg_color}}>
                         <small style={{color: item.color}}>Kupça</small>
@@ -11,7 +11,9 @@ function AreaTitleDeed({item}) {
                     </div>
                     <div className="p-2 text-center space-y-1">
                         <div>
-                            <p className="font-medium">Kirayə</p>
+                            {item.type === 'executive' && (
+                                <p className="font-medium">Alınacaq məbləğ</p>
+                            )}
                             <p className="font-medium">Boş ərazinin qiyməti {item.empty_area} azn</p>
                         </div>
                         <div>
@@ -36,11 +38,21 @@ function AreaTitleDeed({item}) {
                                 <span>{item.price.hotel} azn</span>
                             </div>
                         </div>
-                        <div>
-                            <p className="font-medium">Ərazinin ipoteka dəyəri {item.mortgage} azn</p>
-                            <p className="font-medium">Bir evin tikiliş qiyməti {item.building_home} azn</p>
-                            <p className="font-medium">Otelin tikiliş qiyməti {item.building_hotel} azn</p>
-                        </div>
+                        {item.type === 'area' && (
+                            <div>
+                                <p className="font-medium">Ərazinin ipoteka dəyəri {item.mortgage} azn</p>
+                                <p className="font-medium">Bir evin tikiliş qiyməti {item.building_home} azn</p>
+                                <p className="font-medium">Otelin tikiliş qiyməti {item.building_hotel} azn</p>
+                            </div>
+                        )}
+                        {item.type === 'executive' && (
+                            <div>
+                                <p className="font-medium uppercase">Tikinti üçün icazə</p>
+                                <p className="font-medium">Bir evin tikiliş qiyməti {item.building_home} azn</p>
+                                <p className="font-medium">Otelin tikiliş qiyməti {item.building_hotel} azn</p>
+                                <p className="mt-3 font-medium" style={{color: item.bg_color}}>Birinci müavin gəlirin 30%-ni əldə edir.</p>
+                            </div>
+                        )}
                     </div>
                 </div>
             )}

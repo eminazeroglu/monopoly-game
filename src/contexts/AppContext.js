@@ -30,6 +30,11 @@ export const AppContextProvider = ({children}) => {
         localStorage.setItem('user_areas', JSON.stringify(users))
     }
 
+    const setUserAreas = (user_areas) => {
+        handleSetValue('user_areas', user_areas)
+        localStorage.setItem('user_areas', JSON.stringify(user_areas))
+    }
+
     const setUsers = (users) => {
         handleSetValue('users', users)
         localStorage.setItem('users', JSON.stringify(users))
@@ -60,6 +65,7 @@ export const AppContextProvider = ({children}) => {
         addUsers,
         setUsers,
         resetGame,
+        setUserAreas,
         addUserArea
     }
     return <AppContext.Provider value={values}>{children}</AppContext.Provider>
