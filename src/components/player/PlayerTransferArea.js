@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {Col, InputNumber, Modal, Row, Select} from "antd";
 import {useAppContext} from "contexts/AppContext";
 import {useFormik} from "formik";
@@ -75,11 +75,7 @@ function PlayerTransferArea({visible, onClose}) {
         onClose(false);
     }
 
-    useEffect(() => {
-        setIsModalVisible(visible);
-    }, [visible])
-
-    useEffect(() => {
+    const changeSaleUserId = useCallback(() => {
         if (values.sale_user_id) {
             const userAreaArr = user_areas.filter(i => i.player_id === values.sale_user_id).map(i => {
                 return areas.find(a => a.id === i.area_id);
@@ -88,7 +84,15 @@ function PlayerTransferArea({visible, onClose}) {
             setAreas(userAreaArr);
             setBuyUsers(userArr);
         }
-    }, [values.sale_user_id])
+    }, [values.sale_user_id, areas, user_areas, users])
+
+    useEffect(() => {
+        setIsModalVisible(visible);
+    }, [visible])
+
+    useEffect(() => {
+        changeSaleUserId();
+    }, [changeSaleUserId])
 
     return (
         <Modal
